@@ -1,0 +1,496 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Rubik:wght@300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* OTAKREW Design System - Charte Graphique Inspirée d'ADN */
+
+@layer base {
+  :root {
+    --background: 240 6% 4%;
+    --foreground: 0 0% 98%;
+
+    --card: 240 4% 10%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 240 4% 10%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 16 100% 60%;
+    --primary-foreground: 0 0% 0%;
+
+    --secondary: 240 4% 16%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 240 4% 16%;
+    --muted-foreground: 0 0% 65%;
+
+    --accent: 16 100% 60%;
+    --accent-foreground: 0 0% 0%;
+
+    --destructive: 0 80% 55%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 240 4% 16%;
+    --input: 240 4% 16%;
+    --ring: 16 100% 60%;
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 240 6% 4%;
+    --sidebar-foreground: 0 0% 98%;
+    --sidebar-primary: 16 100% 60%;
+    --sidebar-primary-foreground: 0 0% 0%;
+    --sidebar-accent: 240 4% 16%;
+    --sidebar-accent-foreground: 0 0% 98%;
+    --sidebar-border: 240 4% 16%;
+    --sidebar-ring: 16 100% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-otaku-dark text-foreground;
+    font-family: 'Montserrat', system-ui, sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
+    background: linear-gradient(135deg, hsl(240 6% 4%) 0%, hsl(240 4% 10%) 100%);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Typographie hiérarchique */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Rubik', system-ui, sans-serif;
+    font-weight: 600;
+    line-height: 1.2;
+    color: hsl(0 0% 98%);
+  }
+
+  h1 { @apply text-hero; }
+  h2 { @apply text-title; }
+  h3 { @apply text-subtitle; }
+  h4 { @apply text-heading; }
+  h5 { @apply text-subheading; }
+  h6 { @apply text-body-lg; }
+
+  p {
+    @apply text-body text-gray-300;
+    margin-bottom: 1rem;
+  }
+
+  /* Scrollbar personnalisée */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-otaku-gray;
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-otaku-orange;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-otaku-orange-light;
+  }
+
+  ::-webkit-scrollbar-corner {
+    @apply bg-otaku-gray;
+  }
+
+  /* Sélection de texte */
+  ::selection {
+    background-color: hsl(16 100% 60% / 0.3);
+    color: hsl(0 0% 98%);
+  }
+
+  ::-moz-selection {
+    background-color: hsl(16 100% 60% / 0.3);
+    color: hsl(0 0% 98%);
+  }
+}
+
+@layer components {
+  /* === COMPOSANTS DE BASE === */
+  
+  /* Cards avec animations ADN */
+  .otaku-card {
+    @apply bg-otaku-gray border border-otaku-gray-light rounded-lg p-6;
+    @apply transition-all duration-300 ease-out;
+    @apply hover:border-otaku-orange/30;
+    backdrop-filter: blur(8px);
+  }
+
+  .otaku-card-animated {
+    @apply otaku-card;
+    @apply hover:scale-105 hover:shadow-otaku-halo-md;
+    @apply transform transition-all duration-300 ease-out;
+  }
+
+  .otaku-card-elevated {
+    @apply otaku-card shadow-otaku-lg;
+    @apply hover:shadow-otaku-halo-lg hover:scale-105 transform;
+    @apply transition-all duration-300 ease-out;
+  }
+
+  .otaku-card-hero {
+    @apply bg-gradient-to-br from-otaku-gray to-otaku-gray-light;
+    @apply border border-otaku-orange/20 rounded-xl p-8;
+    @apply shadow-otaku-xl;
+    @apply hover:shadow-otaku-halo-lg transition-all duration-300;
+  }
+
+  /* Boutons avec animations et effets de halo */
+  .otaku-button {
+    @apply bg-gradient-otaku text-white font-medium;
+    @apply px-6 py-3 rounded-lg;
+    @apply transform transition-all duration-300 ease-out;
+    @apply hover:scale-105 hover:shadow-otaku-halo-sm;
+    @apply focus:outline-none focus:ring-2 focus:ring-otaku-orange/50;
+    @apply active:scale-95;
+  }
+
+  .otaku-button-secondary {
+    @apply bg-otaku-gray text-white font-medium;
+    @apply px-6 py-3 rounded-lg;
+    @apply border border-otaku-gray-light;
+    @apply transform transition-all duration-300 ease-out;
+    @apply hover:border-otaku-orange hover:bg-otaku-gray-light hover:scale-105;
+    @apply hover:shadow-otaku-halo-sm;
+    @apply focus:outline-none focus:ring-2 focus:ring-otaku-orange/50;
+    @apply active:scale-95;
+  }
+
+  .otaku-button-outline {
+    @apply bg-transparent text-otaku-orange font-medium;
+    @apply px-6 py-3 rounded-lg;
+    @apply border-2 border-otaku-orange;
+    @apply transform transition-all duration-300 ease-out;
+    @apply hover:bg-otaku-orange hover:text-white hover:scale-105;
+    @apply hover:shadow-otaku-halo-sm;
+    @apply active:scale-95;
+  }
+
+  .otaku-button-ghost {
+    @apply bg-transparent text-gray-300 font-medium;
+    @apply px-6 py-3 rounded-lg;
+    @apply transform transition-all duration-300 ease-out;
+    @apply hover:bg-otaku-gray-light hover:text-white hover:scale-105;
+    @apply active:scale-95;
+  }
+
+  /* Badges et labels avec animations */
+  .otaku-badge {
+    @apply bg-gradient-otaku text-white text-caption font-semibold;
+    @apply px-3 py-1 rounded-full;
+    @apply shadow-sm transition-all duration-300;
+    @apply hover:shadow-otaku-halo-sm hover:scale-105;
+  }
+
+  .otaku-badge-secondary {
+    @apply bg-otaku-gray-light text-gray-300 text-caption font-medium;
+    @apply px-3 py-1 rounded-full;
+    @apply border border-otaku-gray-medium;
+    @apply transition-all duration-300;
+    @apply hover:border-otaku-orange hover:text-white hover:scale-105;
+  }
+
+  .otaku-badge-cameroon {
+    @apply bg-gradient-cameroon text-white text-caption font-semibold;
+    @apply px-3 py-1 rounded-full;
+    @apply shadow-sm transition-all duration-300;
+    @apply hover:shadow-otaku-halo-sm hover:scale-105;
+  }
+
+  /* Inputs et formulaires avec focus animé */
+  .otaku-input {
+    @apply bg-otaku-gray border border-otaku-gray-light;
+    @apply text-white placeholder-gray-400;
+    @apply px-4 py-3 rounded-lg;
+    @apply transition-all duration-300 ease-out;
+    @apply focus:outline-none focus:border-otaku-orange focus:ring-1 focus:ring-otaku-orange;
+    @apply focus:shadow-otaku-halo-sm;
+  }
+
+  .otaku-textarea {
+    @apply otaku-input resize-none min-h-[120px];
+  }
+
+  /* Effets visuels avec animations */
+  .otaku-glow {
+    @apply shadow-otaku-glow;
+    animation: glow-pulse 2s ease-in-out infinite;
+  }
+
+  .otaku-glow-intense {
+    @apply shadow-otaku-glow-intense;
+    animation: glow-pulse 1.5s ease-in-out infinite;
+  }
+
+  .otaku-shimmer {
+    background: linear-gradient(90deg, transparent, hsl(16 100% 60% / 0.1), transparent);
+    background-size: 200% 100%;
+    @apply animate-shimmer;
+  }
+
+  /* Texte et typographie */
+  .otaku-text-gradient {
+    @apply bg-gradient-otaku bg-clip-text text-transparent;
+  }
+
+  .otaku-text-cameroon {
+    @apply bg-gradient-cameroon bg-clip-text text-transparent;
+  }
+
+  .otaku-heading {
+    font-family: 'Rubik', system-ui, sans-serif;
+    @apply font-semibold text-white;
+  }
+
+  .otaku-body {
+    font-family: 'Montserrat', system-ui, sans-serif;
+    @apply text-gray-300;
+  }
+
+  /* Layout et espacement */
+  .section-padding {
+    @apply px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-spacing {
+    @apply py-16 lg:py-24;
+  }
+
+  .container-otaku {
+    @apply max-w-7xl mx-auto section-padding;
+  }
+
+  /* Grilles responsive */
+  .grid-otaku-desktop {
+    @apply grid grid-cols-desktop gap-6;
+  }
+
+  .grid-otaku-tablet {
+    @apply grid grid-cols-tablet gap-4;
+  }
+
+  .grid-otaku-mobile {
+    @apply grid grid-cols-mobile gap-3;
+  }
+
+  .grid-responsive {
+    @apply grid-otaku-mobile sm:grid-otaku-tablet lg:grid-otaku-desktop;
+  }
+
+  /* États interactifs avec animations ADN */
+  .interactive-hover {
+    @apply transform transition-all duration-300 ease-out;
+    @apply hover:scale-105 hover:shadow-otaku-halo-md;
+  }
+
+  .interactive-press {
+    @apply active:scale-95 transform transition-all duration-100;
+  }
+
+  .interactive-focus {
+    @apply focus:outline-none focus:ring-2 focus:ring-otaku-orange/50;
+    @apply focus:ring-offset-2 focus:ring-offset-otaku-dark;
+    @apply transition-all duration-300;
+  }
+
+  /* Animations et transitions spéciales ADN */
+  .animate-entrance {
+    @apply animate-fade-in;
+  }
+
+  .animate-hover-float {
+    @apply hover:animate-float;
+  }
+
+  .animate-pulse-glow {
+    @apply animate-glow-pulse;
+  }
+
+  .animate-zoom-hover {
+    @apply hover:animate-zoom-in;
+  }
+
+  /* Navigation et liens avec animations */
+  .nav-link {
+    @apply text-gray-300 hover:text-white;
+    @apply transition-all duration-300 ease-out;
+    @apply relative;
+  }
+
+  .nav-link::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-full h-0.5;
+    @apply bg-otaku-orange scale-x-0;
+    @apply transition-transform duration-300 ease-out origin-left;
+  }
+
+  .nav-link:hover::after,
+  .nav-link.active::after {
+    @apply scale-x-100;
+  }
+
+  .nav-link.active {
+    @apply text-otaku-orange;
+  }
+
+  /* États de chargement animés */
+  .loading-skeleton {
+    @apply bg-otaku-gray-light rounded;
+    animation: skeleton-pulse 1.5s ease-in-out infinite;
+  }
+
+  .loading-spinner {
+    @apply animate-spin rounded-full border-2 border-otaku-gray-light;
+    border-top-color: hsl(16 100% 60%);
+  }
+
+  /* Menu dropdown animé */
+  .dropdown-menu {
+    @apply transform transition-all duration-300 ease-out;
+    @apply origin-top-right scale-95 opacity-0;
+  }
+
+  .dropdown-menu.open {
+    @apply scale-100 opacity-100;
+  }
+
+  /* Modales avec animations */
+  .modal-backdrop {
+    @apply transition-opacity duration-300 ease-out;
+  }
+
+  .modal-content {
+    @apply transform transition-all duration-300 ease-out;
+    @apply scale-95 opacity-0;
+  }
+
+  .modal-content.open {
+    @apply scale-100 opacity-100;
+  }
+
+  /* Carrousel avec animations fluides */
+  .carousel-item {
+    @apply transform transition-all duration-500 ease-out;
+  }
+
+  .carousel-dots {
+    @apply transition-all duration-300 ease-out;
+    @apply hover:scale-125;
+  }
+
+  /* Notifications et alertes animées */
+  .alert-success {
+    @apply bg-otaku-green/20 border border-otaku-green text-otaku-green-light;
+    @apply px-4 py-3 rounded-lg;
+    @apply animate-slide-up-fade;
+  }
+
+  .alert-warning {
+    @apply bg-otaku-yellow/20 border border-otaku-yellow text-otaku-yellow;
+    @apply px-4 py-3 rounded-lg;
+    @apply animate-slide-up-fade;
+  }
+
+  .alert-error {
+    @apply bg-otaku-red/20 border border-otaku-red text-otaku-red-light;
+    @apply px-4 py-3 rounded-lg;
+    @apply animate-slide-up-fade;
+  }
+
+  .alert-info {
+    @apply bg-otaku-orange/20 border border-otaku-orange text-otaku-orange-light;
+    @apply px-4 py-3 rounded-lg;
+    @apply animate-slide-up-fade;
+  }
+
+  /* Effets de survol pour les images/fanarts */
+  .image-hover-effect {
+    @apply relative overflow-hidden rounded-lg;
+    @apply transform transition-all duration-300 ease-out;
+  }
+
+  .image-hover-effect::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-t from-otaku-dark/80 to-transparent;
+    @apply opacity-0 transition-opacity duration-300;
+  }
+
+  .image-hover-effect:hover::before {
+    @apply opacity-100;
+  }
+
+  .image-hover-effect:hover {
+    @apply scale-105 shadow-otaku-halo-lg;
+  }
+
+  .image-hover-effect img {
+    @apply transition-transform duration-300 ease-out;
+  }
+
+  .image-hover-effect:hover img {
+    @apply scale-110;
+  }
+}
+
+/* === RESPONSIVE BREAKPOINTS === */
+@media (max-width: 640px) {
+  .section-padding {
+    @apply px-4;
+  }
+  
+  .container-otaku {
+    @apply px-4;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section-spacing {
+    @apply py-24;
+  }
+}
+
+/* Réduction des animations pour les utilisateurs qui préfèrent moins de mouvement */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* === UTILITAIRES PRINT === */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  body {
+    background: white !important;
+    color: black !important;
+  }
+}
