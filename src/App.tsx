@@ -7,8 +7,9 @@ import { BrowserRouter, Routes, Route, useNavigation } from "react-router-dom";
 import { Suspense, useState, useEffect } from "react";
 import { AnimatePresence } from "framer-motion";
 import { Loader } from "@/components/Loader";
+import { ForumProvider } from "@/contexts/ForumContext";
+import { forumRoutes } from "@/router/forumRoutes";
 import Index from "./pages/Index";
-import Forum from "./pages/Forum";
 import News from "./pages/News";
 import FanArt from "./pages/FanArt";
 import Shop from "./pages/Shop";
@@ -47,23 +48,27 @@ const AppContent = () => {
       
       {!isLoading && !showLoader && (
         <Suspense fallback={<Loader />}>
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/forum" element={<Forum />} />
-            <Route path="/news" element={<News />} />
-            <Route path="/fanart" element={<FanArt />} />
-            <Route path="/cosplay" element={<FanArt />} />
-            <Route path="/shop" element={<Shop />} />
-            <Route path="/african-comics" element={<News />} />
-            <Route path="/community" element={<Forum />} />
-            <Route path="/quiz" element={<Profile />} />
-            <Route path="/games" element={<Profile />} />
-            <Route path="/favorites" element={<Profile />} />
-            <Route path="/settings" element={<Profile />} />
-            <Route path="/profile" element={<Profile />} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+          <ForumProvider>
+            <Routes>
+              <Route path="/" element={<Index />} />
+              {forumRoutes.map((route, index) => (
+                <Route key={index} {...route} />
+              ))}
+              <Route path="/news" element={<News />} />
+              <Route path="/fanart" element={<FanArt />} />
+              <Route path="/cosplay" element={<FanArt />} />
+              <Route path="/shop" element={<Shop />} />
+              <Route path="/african-comics" element={<News />} />
+              <Route path="/community" element={<Index />} />
+              <Route path="/quiz" element={<Profile />} />
+              <Route path="/games" element={<Profile />} />
+              <Route path="/favorites" element={<Profile />} />
+              <Route path="/settings" element={<Profile />} />
+              <Route path="/profile" element={<Profile />} />
+              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </ForumProvider>
         </Suspense>
       )}
     </>
